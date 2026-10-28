@@ -1,0 +1,38 @@
+
+# Maven build output
+target/
+
+# Java compiled files
+*.class
+
+# Logs
+*.log
+logs/
+
+# Eclipse IDE files
+.settings/
+.project
+.classpath
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# macOS files
+.DS_Store
+
+# Environment and secret files
+.env
+.env.*
+!.env.example
+secrets.properties
+credentials.properties
+
+# Test reports and generated results
+test-output/
+allure-results/
+allure-report/
+
+# Temporary files
+*.tmp
+*.bak
