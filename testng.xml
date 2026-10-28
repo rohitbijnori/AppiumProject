@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite" >
+<parameter name="platform" value="ios"></parameter>
+  <test thread-count="5" name="Test" time-out="60000">
+    <classes>
+      
+      <class name="Test.Runner"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
+

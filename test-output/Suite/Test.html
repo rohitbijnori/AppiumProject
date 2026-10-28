@@ -1,0 +1,251 @@
+<html>
+<head>
+<title>TestNG:  Test</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>Test</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>0/0/1</td>
+</tr><tr>
+<td>Started on:</td><td>Mon Oct 26 23:55:38 IST 2026</td>
+</tr>
+<tr><td>Total time:</td><td>7 seconds (7262 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td></td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED CONFIGURATIONS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td><b>Attribute(s)</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='Test.Runner.configureAppium()'><b>configureAppium</b><br>Test class: Test.Runner<br>Parameters: android</td>
+<td><div><pre>org.testng.internal.invokers.InvokeMethodRunnable$TestNGRuntimeException: org.openqa.selenium.SessionNotCreatedException: Could not start a new session. Response code 500. Message: An unknown server-side error occurred while processing the command. Original error: Neither ANDROID_HOME nor ANDROID_SDK_ROOT environment variable was exported. Read https://developer.android.com/studio/command-line/variables for more details 
+Host info: host: &apos;Apples-MacBook-Pro.local&apos;, ip: &apos;2409:40d2:10e4:2a38:51f4:a0bb:7ff9:29bc%en0&apos;
+Build info: version: &apos;4.16.1&apos;, revision: &apos;9b4c83354e&apos;
+System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;26.5.2&apos;, java.version: &apos;11.0.21&apos;
+Driver info: io.appium.java_client.android.AndroidDriver
+Command: [null, newSession {capabilities=[{appium:noReset=true, appium:autoGrantPermissions=true, appium:ignoreHiddenApiPolicyError=true, appium:avd=Pixel_8_Pro, appium:deviceName=Pixel_8_Pro, platformName=ANDROID, appium:automationName=UiAutomator2, appium:app=/Users/apple/Documents/New Workspace/SampleProject/Resource/General-Store.apk, appium:platformVersion=10}], desiredCapabilities=Capabilities {appium:app: /Users/apple/Documents/New ..., appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:avd: Pixel_8_Pro, appium:deviceName: Pixel_8_Pro, appium:ignoreHiddenApiPolicyError: true, appium:noReset: true, appium:platformVersion: 10, platformName: ANDROID}}]
+Capabilities {appium:app: /Users/apple/Documents/New ..., appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:avd: Pixel_8_Pro, appium:deviceName: Pixel_8_Pro, appium:ignoreHiddenApiPolicyError: true, appium:noReset: true, appium:platformVersion: 10, platformName: ANDROID}
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: org.openqa.selenium.SessionNotCreatedException: Could not start a new session. Response code 500. Message: An unknown server-side error occurred while processing the command. Original error: Neither ANDROID_HOME nor ANDROID_SDK_ROOT environment variable was exported. Read https://developer.android.com/studio/command-line/variables for more details 
+Host info: host: &apos;Apples-MacBook-Pro.local&apos;, ip: &apos;2409:40d2:10e4:2a38:51f4:a0bb:7ff9:29bc%en0&apos;
+Build info: version: &apos;4.16.1&apos;, revision: &apos;9b4c83354e&apos;
+System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;26.5.2&apos;, java.version: &apos;11.0.21&apos;
+Driver info: io.appium.java_client.android.AndroidDriver
+Command: [null, newSession {capabilities=[{appium:noReset=true, appium:autoGrantPermissions=true, appium:ignoreHiddenApiPolicyError=true, appium:avd=Pixel_8_Pro, appium:deviceName=Pixel_8_Pro, platformName=ANDROID, appium:automationName=UiAutomator2, appium:app=/Users/apple/Documents/New Workspace/SampleProject/Resource/General-Store.apk, appium:platformVersion=10}], desiredCapabilities=Capabilities {appium:app: /Users/apple/Documents/New ..., appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:avd: Pixel_8_Pro, appium:deviceName: Pixel_8_Pro, appium:ignoreHiddenApiPolicyError: true, appium:noReset: true, appium:platformVersion: 10, platformName: ANDROID}}]
+Capabilities {appium:app: /Users/apple/Documents/New ..., appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:avd: Pixel_8_Pro, appium:deviceName: Pixel_8_Pro, appium:ignoreHiddenApiPolicyError: true, appium:noReset: true, appium:platformVersion: 10, platformName: ANDROID}
+	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:140)
+	at io.appium.java_client.remote.AppiumProtocolHandshake.createSession(AppiumProtocolHandshake.java:133)
+	at io.appium.java_client.remote.AppiumProtocolHandshake.createSession(AppiumProtocolHandshake.java:102)
+	at io.appium.java_client.remote.AppiumCommandExecutor.createSession(AppiumCommandExecutor.java:177)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:238)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:523)
+	at io.appium.java_client.AppiumDriver.startSession(AppiumDriver.java:268)
+	at org.openqa.selenium.remote.RemoteWebDriver.&lt;init&gt;(RemoteWebDriver.java:164)
+	at io.appium.java_client.AppiumDriver.&lt;init&gt;(AppiumDriver.java:90)
+	at io.appium.java_client.AppiumDriver.&lt;init&gt;(AppiumDriver.java:102)
+	at io.appium.java_client.android.AndroidDriver.&lt;init&gt;(AndroidDriver.java:109)
+	at Test.BaseTest.configureAppium(BaseTest.java:90)
+	... 6 more
+... Removed 13 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace79644918", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace79644918'><pre>org.testng.internal.invokers.InvokeMethodRunnable$TestNGRuntimeException: org.openqa.selenium.SessionNotCreatedException: Could not start a new session. Response code 500. Message: An unknown server-side error occurred while processing the command. Original error: Neither ANDROID_HOME nor ANDROID_SDK_ROOT environment variable was exported. Read https://developer.android.com/studio/command-line/variables for more details 
+Host info: host: &apos;Apples-MacBook-Pro.local&apos;, ip: &apos;2409:40d2:10e4:2a38:51f4:a0bb:7ff9:29bc%en0&apos;
+Build info: version: &apos;4.16.1&apos;, revision: &apos;9b4c83354e&apos;
+System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;26.5.2&apos;, java.version: &apos;11.0.21&apos;
+Driver info: io.appium.java_client.android.AndroidDriver
+Command: [null, newSession {capabilities=[{appium:noReset=true, appium:autoGrantPermissions=true, appium:ignoreHiddenApiPolicyError=true, appium:avd=Pixel_8_Pro, appium:deviceName=Pixel_8_Pro, platformName=ANDROID, appium:automationName=UiAutomator2, appium:app=/Users/apple/Documents/New Workspace/SampleProject/Resource/General-Store.apk, appium:platformVersion=10}], desiredCapabilities=Capabilities {appium:app: /Users/apple/Documents/New ..., appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:avd: Pixel_8_Pro, appium:deviceName: Pixel_8_Pro, appium:ignoreHiddenApiPolicyError: true, appium:noReset: true, appium:platformVersion: 10, platformName: ANDROID}}]
+Capabilities {appium:app: /Users/apple/Documents/New ..., appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:avd: Pixel_8_Pro, appium:deviceName: Pixel_8_Pro, appium:ignoreHiddenApiPolicyError: true, appium:noReset: true, appium:platformVersion: 10, platformName: ANDROID}
+	at org.testng.internal.invokers.InvokeMethodRunnable.runOne(InvokeMethodRunnable.java:56)
+	at org.testng.internal.invokers.InvokeMethodRunnable.call(InvokeMethodRunnable.java:76)
+	at org.testng.internal.invokers.InvokeMethodRunnable.call(InvokeMethodRunnable.java:11)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: org.openqa.selenium.SessionNotCreatedException: Could not start a new session. Response code 500. Message: An unknown server-side error occurred while processing the command. Original error: Neither ANDROID_HOME nor ANDROID_SDK_ROOT environment variable was exported. Read https://developer.android.com/studio/command-line/variables for more details 
+Host info: host: &apos;Apples-MacBook-Pro.local&apos;, ip: &apos;2409:40d2:10e4:2a38:51f4:a0bb:7ff9:29bc%en0&apos;
+Build info: version: &apos;4.16.1&apos;, revision: &apos;9b4c83354e&apos;
+System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;26.5.2&apos;, java.version: &apos;11.0.21&apos;
+Driver info: io.appium.java_client.android.AndroidDriver
+Command: [null, newSession {capabilities=[{appium:noReset=true, appium:autoGrantPermissions=true, appium:ignoreHiddenApiPolicyError=true, appium:avd=Pixel_8_Pro, appium:deviceName=Pixel_8_Pro, platformName=ANDROID, appium:automationName=UiAutomator2, appium:app=/Users/apple/Documents/New Workspace/SampleProject/Resource/General-Store.apk, appium:platformVersion=10}], desiredCapabilities=Capabilities {appium:app: /Users/apple/Documents/New ..., appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:avd: Pixel_8_Pro, appium:deviceName: Pixel_8_Pro, appium:ignoreHiddenApiPolicyError: true, appium:noReset: true, appium:platformVersion: 10, platformName: ANDROID}}]
+Capabilities {appium:app: /Users/apple/Documents/New ..., appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:avd: Pixel_8_Pro, appium:deviceName: Pixel_8_Pro, appium:ignoreHiddenApiPolicyError: true, appium:noReset: true, appium:platformVersion: 10, platformName: ANDROID}
+	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:140)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at io.appium.java_client.remote.AppiumProtocolHandshake.createSession(AppiumProtocolHandshake.java:133)
+	at io.appium.java_client.remote.AppiumProtocolHandshake.createSession(AppiumProtocolHandshake.java:102)
+	at io.appium.java_client.remote.AppiumCommandExecutor.createSession(AppiumCommandExecutor.java:177)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:238)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:523)
+	at io.appium.java_client.AppiumDriver.startSession(AppiumDriver.java:268)
+	at org.openqa.selenium.remote.RemoteWebDriver.&lt;init&gt;(RemoteWebDriver.java:164)
+	at io.appium.java_client.AppiumDriver.&lt;init&gt;(AppiumDriver.java:90)
+	at io.appium.java_client.AppiumDriver.&lt;init&gt;(AppiumDriver.java:102)
+	at io.appium.java_client.android.AndroidDriver.&lt;init&gt;(AndroidDriver.java:109)
+	at Test.BaseTest.configureAppium(BaseTest.java:90)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.InvokeMethodRunnable.runOne(InvokeMethodRunnable.java:47)
+	... 6 more
+</pre></div></td>
+<td>3</td>
+<td>Test.Runner@6933b6c6</td></tr>
+</table><p>
+<table width='100%' border='1' class='invocation-skipped'>
+<tr><td colspan='4' align='center'><b>SKIPPED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td><b>Attribute(s)</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='Test.Runner.registerUser()'><b>registerUser</b><br>Test class: Test.Runner</td>
+<td><div><pre>org.testng.internal.invokers.InvokeMethodRunnable$TestNGRuntimeException: org.openqa.selenium.SessionNotCreatedException: Could not start a new session. Response code 500. Message: An unknown server-side error occurred while processing the command. Original error: Neither ANDROID_HOME nor ANDROID_SDK_ROOT environment variable was exported. Read https://developer.android.com/studio/command-line/variables for more details 
+Host info: host: &apos;Apples-MacBook-Pro.local&apos;, ip: &apos;2409:40d2:10e4:2a38:51f4:a0bb:7ff9:29bc%en0&apos;
+Build info: version: &apos;4.16.1&apos;, revision: &apos;9b4c83354e&apos;
+System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;26.5.2&apos;, java.version: &apos;11.0.21&apos;
+Driver info: io.appium.java_client.android.AndroidDriver
+Command: [null, newSession {capabilities=[{appium:noReset=true, appium:autoGrantPermissions=true, appium:ignoreHiddenApiPolicyError=true, appium:avd=Pixel_8_Pro, appium:deviceName=Pixel_8_Pro, platformName=ANDROID, appium:automationName=UiAutomator2, appium:app=/Users/apple/Documents/New Workspace/SampleProject/Resource/General-Store.apk, appium:platformVersion=10}], desiredCapabilities=Capabilities {appium:app: /Users/apple/Documents/New ..., appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:avd: Pixel_8_Pro, appium:deviceName: Pixel_8_Pro, appium:ignoreHiddenApiPolicyError: true, appium:noReset: true, appium:platformVersion: 10, platformName: ANDROID}}]
+Capabilities {appium:app: /Users/apple/Documents/New ..., appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:avd: Pixel_8_Pro, appium:deviceName: Pixel_8_Pro, appium:ignoreHiddenApiPolicyError: true, appium:noReset: true, appium:platformVersion: 10, platformName: ANDROID}
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: org.openqa.selenium.SessionNotCreatedException: Could not start a new session. Response code 500. Message: An unknown server-side error occurred while processing the command. Original error: Neither ANDROID_HOME nor ANDROID_SDK_ROOT environment variable was exported. Read https://developer.android.com/studio/command-line/variables for more details 
+Host info: host: &apos;Apples-MacBook-Pro.local&apos;, ip: &apos;2409:40d2:10e4:2a38:51f4:a0bb:7ff9:29bc%en0&apos;
+Build info: version: &apos;4.16.1&apos;, revision: &apos;9b4c83354e&apos;
+System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;26.5.2&apos;, java.version: &apos;11.0.21&apos;
+Driver info: io.appium.java_client.android.AndroidDriver
+Command: [null, newSession {capabilities=[{appium:noReset=true, appium:autoGrantPermissions=true, appium:ignoreHiddenApiPolicyError=true, appium:avd=Pixel_8_Pro, appium:deviceName=Pixel_8_Pro, platformName=ANDROID, appium:automationName=UiAutomator2, appium:app=/Users/apple/Documents/New Workspace/SampleProject/Resource/General-Store.apk, appium:platformVersion=10}], desiredCapabilities=Capabilities {appium:app: /Users/apple/Documents/New ..., appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:avd: Pixel_8_Pro, appium:deviceName: Pixel_8_Pro, appium:ignoreHiddenApiPolicyError: true, appium:noReset: true, appium:platformVersion: 10, platformName: ANDROID}}]
+Capabilities {appium:app: /Users/apple/Documents/New ..., appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:avd: Pixel_8_Pro, appium:deviceName: Pixel_8_Pro, appium:ignoreHiddenApiPolicyError: true, appium:noReset: true, appium:platformVersion: 10, platformName: ANDROID}
+	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:140)
+	at io.appium.java_client.remote.AppiumProtocolHandshake.createSession(AppiumProtocolHandshake.java:133)
+	at io.appium.java_client.remote.AppiumProtocolHandshake.createSession(AppiumProtocolHandshake.java:102)
+	at io.appium.java_client.remote.AppiumCommandExecutor.createSession(AppiumCommandExecutor.java:177)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:238)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:523)
+	at io.appium.java_client.AppiumDriver.startSession(AppiumDriver.java:268)
+	at org.openqa.selenium.remote.RemoteWebDriver.&lt;init&gt;(RemoteWebDriver.java:164)
+	at io.appium.java_client.AppiumDriver.&lt;init&gt;(AppiumDriver.java:90)
+	at io.appium.java_client.AppiumDriver.&lt;init&gt;(AppiumDriver.java:102)
+	at io.appium.java_client.android.AndroidDriver.&lt;init&gt;(AndroidDriver.java:109)
+	at Test.BaseTest.configureAppium(BaseTest.java:90)
+	... 6 more
+... Removed 13 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1320105604", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1320105604'><pre>org.testng.internal.invokers.InvokeMethodRunnable$TestNGRuntimeException: org.openqa.selenium.SessionNotCreatedException: Could not start a new session. Response code 500. Message: An unknown server-side error occurred while processing the command. Original error: Neither ANDROID_HOME nor ANDROID_SDK_ROOT environment variable was exported. Read https://developer.android.com/studio/command-line/variables for more details 
+Host info: host: &apos;Apples-MacBook-Pro.local&apos;, ip: &apos;2409:40d2:10e4:2a38:51f4:a0bb:7ff9:29bc%en0&apos;
+Build info: version: &apos;4.16.1&apos;, revision: &apos;9b4c83354e&apos;
+System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;26.5.2&apos;, java.version: &apos;11.0.21&apos;
+Driver info: io.appium.java_client.android.AndroidDriver
+Command: [null, newSession {capabilities=[{appium:noReset=true, appium:autoGrantPermissions=true, appium:ignoreHiddenApiPolicyError=true, appium:avd=Pixel_8_Pro, appium:deviceName=Pixel_8_Pro, platformName=ANDROID, appium:automationName=UiAutomator2, appium:app=/Users/apple/Documents/New Workspace/SampleProject/Resource/General-Store.apk, appium:platformVersion=10}], desiredCapabilities=Capabilities {appium:app: /Users/apple/Documents/New ..., appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:avd: Pixel_8_Pro, appium:deviceName: Pixel_8_Pro, appium:ignoreHiddenApiPolicyError: true, appium:noReset: true, appium:platformVersion: 10, platformName: ANDROID}}]
+Capabilities {appium:app: /Users/apple/Documents/New ..., appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:avd: Pixel_8_Pro, appium:deviceName: Pixel_8_Pro, appium:ignoreHiddenApiPolicyError: true, appium:noReset: true, appium:platformVersion: 10, platformName: ANDROID}
+	at org.testng.internal.invokers.InvokeMethodRunnable.runOne(InvokeMethodRunnable.java:56)
+	at org.testng.internal.invokers.InvokeMethodRunnable.call(InvokeMethodRunnable.java:76)
+	at org.testng.internal.invokers.InvokeMethodRunnable.call(InvokeMethodRunnable.java:11)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: org.openqa.selenium.SessionNotCreatedException: Could not start a new session. Response code 500. Message: An unknown server-side error occurred while processing the command. Original error: Neither ANDROID_HOME nor ANDROID_SDK_ROOT environment variable was exported. Read https://developer.android.com/studio/command-line/variables for more details 
+Host info: host: &apos;Apples-MacBook-Pro.local&apos;, ip: &apos;2409:40d2:10e4:2a38:51f4:a0bb:7ff9:29bc%en0&apos;
+Build info: version: &apos;4.16.1&apos;, revision: &apos;9b4c83354e&apos;
+System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;26.5.2&apos;, java.version: &apos;11.0.21&apos;
+Driver info: io.appium.java_client.android.AndroidDriver
+Command: [null, newSession {capabilities=[{appium:noReset=true, appium:autoGrantPermissions=true, appium:ignoreHiddenApiPolicyError=true, appium:avd=Pixel_8_Pro, appium:deviceName=Pixel_8_Pro, platformName=ANDROID, appium:automationName=UiAutomator2, appium:app=/Users/apple/Documents/New Workspace/SampleProject/Resource/General-Store.apk, appium:platformVersion=10}], desiredCapabilities=Capabilities {appium:app: /Users/apple/Documents/New ..., appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:avd: Pixel_8_Pro, appium:deviceName: Pixel_8_Pro, appium:ignoreHiddenApiPolicyError: true, appium:noReset: true, appium:platformVersion: 10, platformName: ANDROID}}]
+Capabilities {appium:app: /Users/apple/Documents/New ..., appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:avd: Pixel_8_Pro, appium:deviceName: Pixel_8_Pro, appium:ignoreHiddenApiPolicyError: true, appium:noReset: true, appium:platformVersion: 10, platformName: ANDROID}
+	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:140)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at io.appium.java_client.remote.AppiumProtocolHandshake.createSession(AppiumProtocolHandshake.java:133)
+	at io.appium.java_client.remote.AppiumProtocolHandshake.createSession(AppiumProtocolHandshake.java:102)
+	at io.appium.java_client.remote.AppiumCommandExecutor.createSession(AppiumCommandExecutor.java:177)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:238)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:523)
+	at io.appium.java_client.AppiumDriver.startSession(AppiumDriver.java:268)
+	at org.openqa.selenium.remote.RemoteWebDriver.&lt;init&gt;(RemoteWebDriver.java:164)
+	at io.appium.java_client.AppiumDriver.&lt;init&gt;(AppiumDriver.java:90)
+	at io.appium.java_client.AppiumDriver.&lt;init&gt;(AppiumDriver.java:102)
+	at io.appium.java_client.android.AndroidDriver.&lt;init&gt;(AndroidDriver.java:109)
+	at Test.BaseTest.configureAppium(BaseTest.java:90)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.InvokeMethodRunnable.runOne(InvokeMethodRunnable.java:47)
+	... 6 more
+</pre></div></td>
+<td>0</td>
+<td>Test.Runner@6933b6c6</td></tr>
+</table><p>
+</body>
+</html>
