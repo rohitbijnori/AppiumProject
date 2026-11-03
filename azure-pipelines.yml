@@ -1,0 +1,47 @@
+# Maven
+# Build your Java project and run tests with Apache Maven.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/java
+
+trigger:
+- master
+
+pool:
+  name: Default
+  demands:
+  - Agent.Name -equals MacBook-Appium-Agent
+
+steps:
+
+# Step 1: Verify Java
+- script: |
+    java -version
+    mvn -version
+  displayName: 'Verify Java and Maven'
+
+# Step 2: Start Appium Server
+- script: |
+    nohup appium --address 127.0.0.1 --port 4723 > appium.log 2>&1 &
+    sleep 10
+    curl http://127.0.0.1:4723/status
+  displayName: 'Start Appium Server'
+
+# Step 3: Execute Maven TestNG Tests
+- task: Maven@3
+  displayName: 'Run Appium Automation Tests'
+  inputs:
+    mavenPomFile: 'pom.xml'
+    goals: 'clean test'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    javaHomeOption: 'Path'
+    jdkDirectory: '/Library/Java/JavaVirtualMachines/jdk-11.jdk/Contents/Home'
+
+# Step 4: Publish Test Results
+- task: PublishTestResults@2
+  displayName: 'Publish TestNG Results'
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    failTaskOnFailedTests: true
+  condition: succeededOrFailed()
