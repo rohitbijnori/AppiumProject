@@ -4,43 +4,47 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
 
+
 trigger:
   branches:
     include:
       - master
 
 pool:
-  name: Default
+  name: Appium-Mac
   demands:
     - Agent.Name -equals MacBook-Appium-Agent
 
 stages:
   - stage: AppiumAutomation
-    displayName: 'Execute Appium Automation'
+    displayName: 'Appium Automation Testing'
 
     jobs:
       - job: AppiumTests
         displayName: 'Run Tests on Mac Agent'
 
         steps:
+          # Checkout source code
           - checkout: self
 
+          # Step 1: Verify environment
           - task: CmdLine@2
             displayName: 'Verify Java, Maven and Appium'
             inputs:
               script: |
-                echo "Checking Java"
+                echo "Checking Java version"
                 java -version
 
-                echo "Checking Maven"
+                echo "Checking Maven version"
                 mvn -version
 
-                echo "Checking Appium"
+                echo "Checking Appium version"
                 appium --version
 
                 echo "Checking Android devices"
                 adb devices
 
+          # Step 2: Start Appium server
           - task: CmdLine@2
             displayName: 'Start Appium Server'
             inputs:
@@ -52,6 +56,7 @@ stages:
                     echo "Appium server started successfully"
                     exit 0
                   fi
+
                   sleep 2
                 done
 
@@ -59,16 +64,19 @@ stages:
                 cat appium.log
                 exit 1
 
+          # Step 3: Execute Maven tests
           - task: CmdLine@2
-            displayName: 'Execute Appium TestNG Automation'
+            displayName: 'Run Appium Automation Tests'
             inputs:
               script: |
                 mvn clean test
 
+          # Step 4: Publish TestNG results
           - task: PublishTestResults@2
             displayName: 'Publish TestNG Results'
             inputs:
               testResultsFormat: 'JUnit'
               testResultsFiles: '**/surefire-reports/TEST-*.xml'
               failTaskOnFailedTests: true
+              testRunTitle: 'Appium Automation Test Results'
             condition: succeededOrFailed()
