@@ -3,45 +3,72 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
+
 trigger:
-- master
+  branches:
+    include:
+      - master
 
 pool:
   name: Default
   demands:
-  - Agent.Name -equals MacBook-Appium-Agent
+    - Agent.Name -equals MacBook-Appium-Agent
 
-steps:
+stages:
+  - stage: AppiumAutomation
+    displayName: 'Execute Appium Automation'
 
-# Step 1: Verify Java
-- script: |
-    java -version
-    mvn -version
-  displayName: 'Verify Java and Maven'
+    jobs:
+      - job: AppiumTests
+        displayName: 'Run Tests on Mac Agent'
 
-# Step 2: Start Appium Server
-- script: |
-    nohup appium --address 127.0.0.1 --port 4723 > appium.log 2>&1 &
-    sleep 10
-    curl http://127.0.0.1:4723/status
-  displayName: 'Start Appium Server'
+        steps:
+          - checkout: self
 
-# Step 3: Execute Maven TestNG Tests
-- task: Maven@3
-  displayName: 'Run Appium Automation Tests'
-  inputs:
-    mavenPomFile: 'pom.xml'
-    goals: 'clean test'
-    publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    javaHomeOption: 'Path'
-    jdkDirectory: '/Library/Java/JavaVirtualMachines/jdk-11.jdk/Contents/Home'
+          - task: CmdLine@2
+            displayName: 'Verify Java, Maven and Appium'
+            inputs:
+              script: |
+                echo "Checking Java"
+                java -version
 
-# Step 4: Publish Test Results
-- task: PublishTestResults@2
-  displayName: 'Publish TestNG Results'
-  inputs:
-    testResultsFormat: 'JUnit'
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    failTaskOnFailedTests: true
-  condition: succeededOrFailed()
+                echo "Checking Maven"
+                mvn -version
+
+                echo "Checking Appium"
+                appium --version
+
+                echo "Checking Android devices"
+                adb devices
+
+          - task: CmdLine@2
+            displayName: 'Start Appium Server'
+            inputs:
+              script: |
+                nohup appium --address 127.0.0.1 --port 4723 > appium.log 2>&1 &
+
+                for i in {1..30}; do
+                  if curl -s http://127.0.0.1:4723/status > /dev/null; then
+                    echo "Appium server started successfully"
+                    exit 0
+                  fi
+                  sleep 2
+                done
+
+                echo "Appium server failed to start"
+                cat appium.log
+                exit 1
+
+          - task: CmdLine@2
+            displayName: 'Execute Appium TestNG Automation'
+            inputs:
+              script: |
+                mvn clean test
+
+          - task: PublishTestResults@2
+            displayName: 'Publish TestNG Results'
+            inputs:
+              testResultsFormat: 'JUnit'
+              testResultsFiles: '**/surefire-reports/TEST-*.xml'
+              failTaskOnFailedTests: true
+            condition: succeededOrFailed()
