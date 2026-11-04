@@ -12,7 +12,7 @@ import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class Register extends Utility{
 
-    AppiumDriver driver;
+	 AppiumDriver driver;
     private String platform;
     public Register(AppiumDriver driver, String platform) {
         super(driver);
@@ -31,11 +31,23 @@ public class Register extends Utility{
     @AndroidFindBy(id="com.androidsample.generalstore:id/btnLetsShop")
     private WebElement letsShopBtn;
 
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther")
-    private WebElement alertViews;
+    @AndroidFindBy(id="com.androidsample.generalstore:id/toolbar_title")
+    private WebElement productTxt; 
+    
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[13]/XCUIElementTypeOther[1]/XCUIElementTypeOther")
+    private WebElement stepper;
 
-    @iOSXCUITFindBy(accessibility = "Text Entry")
-    private WebElement textEntry;
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeButton[@name=\"Increment\"])[1]")
+    private WebElement defaultt;
+    
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeButton[@name=\"Increment\"])[2]")
+    private WebElement tinted;
+    
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeButton[@name=\"Increment\"])[3]")
+    private WebElement custom; 
+    
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Steppers\"]")
+    private WebElement stepperTxt; 
     
 //    public void registerToApp() throws InterruptedException {
 //    	 if (platform.equalsIgnoreCase("android"))
@@ -69,8 +81,11 @@ public class Register extends Utility{
 
         } else if (platform.equalsIgnoreCase("iOS")) {
 
-            alertViews.click();
-            textEntry.click();
+            stepper.click();
+            defaultt.click();
+            tinted.click();
+            tinted.click();
+            custom.click();
 
         } else {
             throw new IllegalArgumentException(
@@ -80,5 +95,10 @@ public class Register extends Utility{
 
         Thread.sleep(5000);
     }
+    public String getStepperText() {
+        return stepperTxt.getText();
+    }
+    public String getProductText() {
+        return productTxt.getText();
+    }
 }
-

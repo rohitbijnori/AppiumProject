@@ -1,26 +1,14 @@
 package Test;
 
+import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
 import PageObject.Register;
-import PageObject.Switches;
-import Test.BaseTest;
 
 
 
-public class Runner extends BaseTest{
-	
-	
-//	 @Test
-//	    @Parameters({"platform"})
-//	    public void registerUser() throws InterruptedException {
-//		 Register register = new Register(driver, platform);
-//	        
-//	        register.registerToApp();
-//
-//	    }
+public class Runner  extends BaseTest{
 	 
 	 @Test
 	 public void registerUser() throws InterruptedException {
@@ -29,16 +17,27 @@ public class Runner extends BaseTest{
 
 	     Register register = new Register(driver, platform);
 	     register.registerToApp();
+	     if (platform.equalsIgnoreCase("iOS")) {
+	            Assert.assertEquals(
+	                register.getStepperText(),
+	                "Steppers"
+	            );
+	   
+	 }else if (platform.equalsIgnoreCase("android")) {
+         Assert.assertEquals(
+	                register.getProductText(),
+	                "Products"
+	            );
 	 }
-	 
-	 @Test
-	 public void switchTest() throws InterruptedException {
-
-	     System.out.println("Runner platform = " + platform);
-
-	     Switches sw = new Switches(driver, platform);
-	     sw.switchTest();
-	 }
+	  
+//	 @Test
+//	 public void switchTest() throws InterruptedException {
+//
+//	     System.out.println("Runner platform = " + platform);
+//
+//	     Switches sw = new Switches(driver, platform);
+//	     sw.switchTest();
+//	 }
 	 
 //	 @DataProvider (name="getData")
 //	 public Object[][] getData(){
@@ -51,6 +50,6 @@ public class Runner extends BaseTest{
 //	 }
 	 
 }	 
-
+}
 
  
