@@ -178,15 +178,20 @@ public class BaseTest {
         }
     }
    
-	@AfterClass
+    @AfterClass(alwaysRun = true)
     public void tearDown() {
 
         if (driver != null) {
             driver.quit();
+            driver = null;
+
+            System.out.println("Application closed successfully.");
         }
 
         if (service != null && service.isRunning()) {
             service.stop();
+
+            System.out.println("Appium server stopped.");
         }
     }
 }
