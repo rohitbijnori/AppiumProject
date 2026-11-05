@@ -5,6 +5,7 @@
 
 
 
+
 trigger:
   branches:
     include:
@@ -12,71 +13,109 @@ trigger:
 
 pool:
   name: Appium-Mac
-  demands:
-    - Agent.Name -equals MacBook-Appium-Agent
 
 stages:
-  - stage: AppiumAutomation
-    displayName: 'Appium Automation Testing'
+  - stage: CrossPlatformAutomation
+    displayName: 'Cross Platform Appium Testing'
 
     jobs:
-      - job: AppiumTests
-        displayName: 'Run Tests on Mac Agent'
+
+      # ANDROID JOB
+      - job: AndroidTests
+        displayName: 'Android Automation Tests'
 
         steps:
-          # Checkout source code
           - checkout: self
 
-          # Step 1: Verify environment
           - task: CmdLine@2
-            displayName: 'Verify Java, Maven and Appium'
+            displayName: 'Verify Android Environment'
             inputs:
               script: |
-                echo "Checking Java version"
                 java -version
-
-                echo "Checking Maven version"
                 mvn -version
-
-                echo "Checking Appium version"
                 appium --version
-
-                echo "Checking Android devices"
                 adb devices
 
-          # Step 2: Start Appium server
           - task: CmdLine@2
-            displayName: 'Start Appium Server'
+            displayName: 'Run Android Tests'
             inputs:
               script: |
-                nohup appium --address 127.0.0.1 --port 4723 > appium.log 2>&1 &
+                nohup appium --address 127.0.0.1 --port 4723 > "$(Agent.TempDirectory)/appium-android.log" 2>&1 &
+                APPIUM_PID=$!
+                trap 'kill $APPIUM_PID 2>/dev/null || true' EXIT
 
                 for i in {1..30}; do
                   if curl -s http://127.0.0.1:4723/status > /dev/null; then
-                    echo "Appium server started successfully"
-                    exit 0
+                    echo "Android Appium server started"
+                    break
                   fi
-
                   sleep 2
                 done
 
-                echo "Appium server failed to start"
-                cat appium.log
-                exit 1
+                curl -sf http://127.0.0.1:4723/status > /dev/null || {
+                  cat "$(Agent.TempDirectory)/appium-android.log"
+                  exit 1
+                }
 
-          # Step 3: Execute Maven tests
-          - task: CmdLine@2
-            displayName: 'Run Appium Automation Tests'
-            inputs:
-              script: |
-                mvn clean test
+                mvn clean test \
+                  -Dplatform=Android \
+                  -DappiumUrl=http://127.0.0.1:4723
 
-          # Step 4: Publish TestNG results
           - task: PublishTestResults@2
-            displayName: 'Publish TestNG Results'
+            displayName: 'Publish Android Results'
             inputs:
               testResultsFormat: 'JUnit'
               testResultsFiles: '**/surefire-reports/TEST-*.xml'
               failTaskOnFailedTests: true
-              testRunTitle: 'Appium Automation Test Results'
+              testRunTitle: 'Android Test Results'
+            condition: succeededOrFailed()
+
+      # IOS JOB
+      - job: IOSTests
+        displayName: 'iOS Automation Tests'
+
+        steps:
+          - checkout: self
+
+          - task: CmdLine@2
+            displayName: 'Verify iOS Environment'
+            inputs:
+              script: |
+                java -version
+                mvn -version
+                appium --version
+                xcrun simctl list devices booted
+
+          - task: CmdLine@2
+            displayName: 'Run iOS Tests'
+            inputs:
+              script: |
+                nohup appium --address 127.0.0.1 --port 4725 > "$(Agent.TempDirectory)/appium-ios.log" 2>&1 &
+                APPIUM_PID=$!
+                trap 'kill $APPIUM_PID 2>/dev/null || true' EXIT
+
+                for i in {1..30}; do
+                  if curl -s http://127.0.0.1:4725/status > /dev/null; then
+                    echo "iOS Appium server started"
+                    break
+                  fi
+                  sleep 2
+                done
+
+                curl -sf http://127.0.0.1:4725/status > /dev/null || {
+                  cat "$(Agent.TempDirectory)/appium-ios.log"
+                  exit 1
+                }
+
+                mvn clean test \
+                  -Dplatform=iOS \
+                  -DappiumUrl=http://127.0.0.1:4725
+
+          - task: PublishTestResults@2
+            displayName: 'Publish iOS Results'
+            inputs:
+              testResultsFormat: 'JUnit'
+              testResultsFiles: '**/surefire-reports/TEST-*.xml'
+              failTaskOnFailedTests: true
+              testRunTitle: 'iOS Test Results'
             condition: succeededOrFailed()

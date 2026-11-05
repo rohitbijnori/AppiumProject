@@ -1,4 +1,5 @@
 PageObject/Register.class
 PageObject/Switches.class
+PageObject/CalenderTest.class
 Utils/UtilityIos.class
 Utils/Utility.class
